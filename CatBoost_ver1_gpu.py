@@ -154,6 +154,7 @@ baseline_params = {
     "eval_metric": "Logloss",
     "random_seed": 42,
     "task_type": "GPU",
+    "devices": "1",
     "auto_class_weights": "Balanced",
 }
 
@@ -175,6 +176,7 @@ def objective(trial):
         "eval_metric": "Logloss",
         "random_seed": 42,
         "task_type": "GPU",
+        "devices": "1",
         "verbose": 0,
         "learning_rate": trial.suggest_float("learning_rate", 0.005, 0.1, log=True),
         "depth": trial.suggest_int("depth", 4, 10),
@@ -205,6 +207,7 @@ best_params.update({
     "eval_metric": "Logloss",
     "random_seed": 42,
     "task_type": "GPU",
+    "devices": "1",
     "verbose": 0,
 })
 
