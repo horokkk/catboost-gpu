@@ -232,7 +232,7 @@ for conf_thr in [0.90, 0.93, 0.95, 0.97]:
     # 확장된 학습 데이터
     X_pseudo = X_test[high_mask].copy()
     X_expanded = pd.concat([X.copy(), X_pseudo], ignore_index=True)
-    y_expanded = pd.concat([y.copy(), pd.Series(pseudo_labels.values)], ignore_index=True)
+    y_expanded = pd.concat([y.copy(), pd.Series(pseudo_labels)], ignore_index=True)
 
     score, thr, _, test_probs = train_lgbm_with_te(
         X_expanded, y_expanded, X_test.copy(), n_train,
