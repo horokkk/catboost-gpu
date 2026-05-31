@@ -120,7 +120,7 @@ def evaluate_catboost(params):
 
 def objective_cb(trial):
     params = {
-        "iterations": 2000, "eval_metric": "Logloss", "random_seed": 42, "task_type": "GPU", "verbose": 0,
+        "iterations": 2000, "eval_metric": "Logloss", "random_seed": 42, "verbose": 0,
         "learning_rate": trial.suggest_float("learning_rate", 0.005, 0.1, log=True),
         "depth": trial.suggest_int("depth", 4, 10),
         "l2_leaf_reg": trial.suggest_float("l2_leaf_reg", 0.1, 10.0, log=True),
@@ -144,7 +144,7 @@ print(f"★ CatBoost Best params: {study_cb.best_params}")
 
 # CatBoost 최종 학습 + multi-seed test 예측
 best_params_cb = study_cb.best_params.copy()
-best_params_cb.update({"iterations": 3000, "eval_metric": "Logloss", "random_seed": 42, "task_type": "GPU", "verbose": 0})
+best_params_cb.update({"iterations": 3000, "eval_metric": "Logloss", "random_seed": 42, "verbose": 0})
 
 f1_final, auc_final, oof_cb = evaluate_catboost(best_params_cb)
 
